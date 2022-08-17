@@ -1,0 +1,12 @@
+{
+    "client_id": "",
+    "client_secret": "",
+    "redirect_url": "http://127.0.0.1/index.html",
+    "access_token": "",
+    "refresh_token": "",
+    "expires_in": 3600,
+    "expiry": 1660741552647,
+    "token_type": "Bearer",
+    "market": "FR",
+    "file": true
+}

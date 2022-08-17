@@ -1,0 +1,304 @@
+{
+"data":[
+	{
+		"label": "FEZ",
+		"value": "ost game",
+		"tag": "fez 8bit",
+		"source": "youtube",
+		"link": "76GnOwHorn0&list=PL89C6D0CCE49B641D"
+	},{
+		"label": "France Info",
+		"value": "franceinfo",
+		"tag": "franceinfo",
+		"source": "franceinfo",
+		"link": "http://icecast.radiofrance.fr/franceinfo-midfi.mp3"
+	},{
+		"label": "Witch House",
+		"value": "playlist genre",
+		"tag": "witch_house",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/357Jg4nPfDrxbD7XdXN7Bk?si=590e7024fadf4df5"
+	},{
+		"label": "Les Légendes du Rock",
+		"value": "playlist genre",
+		"tag": "rock",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DWXTHBOfJ8aI7?si=b6a2a2d00f024ca3"
+	},{
+		"label": "Daft Punk",
+		"value": "playlist artist",
+		"tag": "daftpunk",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DWZAkrucRF6Gq?si=f34ffb5d6e134b3e"
+	},{
+		"label": "Perturbator",
+		"value": "playlist artist",
+		"tag": "darkwave perturbator",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO1aAyaE?si=279d1732ce844848"
+	},{
+		"label": "Danger",
+		"value": "playlist artist",
+		"tag": "danger club",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO1mC9MI?si=2aef91f6653947b4"
+	},{
+		"label": "Dragon Force",
+		"value": "playlist artist",
+		"tag": "dragonforce metal",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO1nAVAQ?si=8d5526940b2d4d62"
+	},{
+		"label": "Igorrr",
+		"value": "playlist artist",
+		"tag": "igorrr",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO1ncseY?si=533ccb97fbf543cf"
+	},{
+		"label": "Vald",
+		"value": "playlist artist",
+		"tag": "vald rapfr",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO26xkaI?si=2076f08430d341f5"
+	},{
+		"label": "Jul",
+		"value": "playlist artist",
+		"tag": "rapfr jul",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO2atMEo?si=d316072285234568"
+	},{
+		"label": "Central Cee",
+		"value": "playlist artist",
+		"tag": "rapus",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO3lYf2U?si=56fc00ef51534e9c"
+	},{
+		"label": "Rap Français 2022",
+		"value": "playlist genre",
+		"tag": "rapfr 2022",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/4l1CEhc7ZPbaEtiPdCSGbl?si=0d78755969a34fab"
+	},{
+		"label": "Disco Music",
+		"value": "playlist genre",
+		"tag": "disco",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/5YW0YxQ7CQU7KiW0KZoPPD?si=9b2a0e703b8c4abb"
+	},{
+		"label": "InternetWave",
+		"value": "playlist theme",
+		"tag": "internetwave",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/62hD40jkoMHymMlALmXNJB?si=fb72f683162c464b"
+	},{
+		"label": "Breakcore",
+		"value": "playlist genre",
+		"tag": "breakcore",
+		"source": "spotify",
+		"link": "https://open.spotify.com/playlist/6ZGwWXpgrETNZLCft7tY4x?si=ce17b79381b648b0"
+	},{
+		"label": "OST FF:XIV Shadowbringer",
+		"value": "ost game",
+		"tag": "ffxiv",
+		"source": "youtube",
+		"link": "OLAK5uy_k6VLzZ2xBwP1jVU7h1jQ1DWqxYz5k4rrE"
+	},{
+		"label": "OST FF:XIV Heavensward",
+		"value": "ost game",
+		"tag": "ffxiv",
+		"source": "youtube",
+		"link": "OLAK5uy_kuqCw19hXcJT8Ff0wFsvqkTgZX-yxzViE"
+	},{
+		"label": "NieR Automata",
+		"value": "ost game",
+		"tag": "nier",
+		"source": "youtube",
+		"link": "OLAK5uy_l--G5hZu15rmQoiNnHHGCARJ5xJePbWOM"
+	},{
+		"label": "Undertale",
+		"value": "ost game",
+		"tag": "undertale 8bit",
+		"source": "youtube",
+		"link": "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc"
+	},{
+		"label": "Dark Souls 3",
+		"value": "ost game",
+		"tag": "darksouls",
+		"source": "youtube",
+		"link": "OLAK5uy_m6QO47w07vWrLLBfpf3DQcfB1jWbIxl_0"
+	},{
+		"label": "OST FF:XIV A Realm Reborn",
+		"value": "ost game",
+		"tag": "ffxiv",
+		"source": "youtube",
+		"link": "OLAK5uy_m8sjPWdifVNP7KAR28DeY4la1AnEj_Y1I"
+	},{
+		"label": "Hadès",
+		"value": "ost game",
+		"tag": "hades",
+		"source": "youtube",
+		"link": "OLAK5uy_mmsY7B9giHIXRb5aPnpgYFWBUWvItQlpA"
+	},{
+		"label": "OST FF:XIV Stromblood",
+		"value": "ost game",
+		"tag": "ffxiv",
+		"source": "youtube",
+		"link": "OLAK5uy_ntIO8Lt-Od86NwWz85hexjHDgIhT30jcY"
+	},{
+		"label": "Dark Souls 2",
+		"value": "ost game",
+		"tag": "darksouls",
+		"source": "youtube",
+		"link": "OLAK5uy_nty0U87o6Muql9lBoJfh5pZADAlfkFa2Y"
+	},{
+		"label": "GRIS",
+		"value": "ost game",
+		"tag": "gris chill",
+		"source": "youtube",
+		"link": "OLAK5uy_nWEw_XDViVW6OkabOr67WU58-rN760uYE"
+	},{
+		"label": "10ème cercle des Enfers",
+		"value": "playlist theme",
+		"tag": "playlist des enfer",
+		"source": "youtube",
+		"link": "PL_QxFQYnISApnlMzdZ-_BjpZYInc0VMdl"
+	},{
+		"label": "Outerwilds (w. Echoes of the Eye)",
+		"value": "ost game",
+		"tag": "outerwilds",
+		"source": "youtube",
+		"link": "PL-f6lhHTNtYnofxTCiNh9Xsq9yHLG_VZ7"
+	},{
+		"label": "Dark Souls 1",
+		"value": "ost game",
+		"tag": "darksouls",
+		"source": "youtube",
+		"link": "PL0z6OTWQn37ktCTjADdpo_XKzxYdHHqTF"
+	},{
+		"label": "Earthbound",
+		"value": "ost game",
+		"tag": "earthbound 8bit",
+		"source": "youtube",
+		"link": "PL1kU0pk5M3GCwzveqamX71sW3RmCzuXB5"
+	},{
+		"label": "Laser Disc",
+		"value": "podcast",
+		"tag": "laserdisc",
+		"source": "youtube",
+		"link": "PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0"
+	},{
+		"label": "Borderlands 3",
+		"value": "ost game",
+		"tag": "bl3",
+		"source": "youtube",
+		"link": "PLasqSXwCIDXeCUhE_9toVP6KcNhSa2mWF"
+	},{
+		"label": "Le Florilège de Bigard",
+		"value": "emission",
+		"tag": "bigard",
+		"source": "youtube",
+		"link": "PLcOiH8LUT4lkw9Grh5VOWFzM8JH_k4lbd"
+	},{
+		"label": "La chronique de Laurent Gerra",
+		"value": "emission",
+		"tag": "laurent_gerra",
+		"source": "youtube",
+		"link": "PLcVOgHYnQaGar6_2_roBwCg-U4iO9k7N7"
+	},{
+		"label": "Dune",
+		"value": "ost film",
+		"tag": "dune orchestral",
+		"source": "youtube",
+		"link": "PLDisKgcnAC4TVlStzU6FD08dmDBuf6Mq-"
+	},{
+		"label": "Doom",
+		"value": "ost game",
+		"tag": "doom metal",
+		"source": "youtube",
+		"link": "PLe0EamRrnC6Rb5F3njbg6eYYy09PNKEOv"
+	},{
+		"label": "Deltarune",
+		"value": "ost game",
+		"tag": "deltarune 8bit",
+		"source": "youtube",
+		"link": "PLEUKcNuP7bDX9RoW3HqYR6EFvWZh12upZ"
+	},{
+		"label": "ZZCCMXTP",
+		"value": "playlist theme",
+		"tag": "rapfr zzccmxtp",
+		"source": "youtube",
+		"link": "PLfiMjLyNWxeaQQjpPhk7FlbMZtD56RUyX"
+	},{
+		"label": "Chill 2022",
+		"value": "playlist theme",
+		"tag": "chill",
+		"source": "youtube",
+		"link": "PLgzTt0k8mXzEpH7-dOCHqRZOsakqXmzmG"
+	},{
+		"label": "VA-11 HALL-A",
+		"value": "ost game",
+		"tag": "va11halla",
+		"source": "youtube",
+		"link": "PLmOx8CVVYfY3kVqnC78iltBk1Cs7QdRXu"
+	},{
+		"label": "Les Grosses Têtes 2020",
+		"value": "emission",
+		"tag": "grosses_tetes",
+		"source": "youtube",
+		"link": "PLmXdn3NnBDeo1gPmFdQuNHmWaxp-mIrqH"
+	},{
+		"label": "Hypnose par Benjamin Lubszynski",
+		"value": "emission",
+		"tag": "hypnose",
+		"source": "youtube",
+		"link": "PLonu8YOac5Qp2TiY57HNfLd_hq_pbXQHh"
+	},{
+		"label": "OST Hollow Knight (Complet)",
+		"value": "ost game",
+		"tag": "hollowknight",
+		"source": "youtube",
+		"link": "PLpxrJrWZu7vSVdZW2Q-tqvR8p20U5MIII"
+	},{
+		"label": "Stellaris",
+		"value": "ost game",
+		"tag": "stellaris ambient",
+		"source": "youtube",
+		"link": "PLQOzEU-fKC9kWN2Nif_EQEbhV09rFVG4N"
+	},{
+		"label": "Musiques osu! iconiques",
+		"value": "playlist theme",
+		"tag": "osu!",
+		"source": "youtube",
+		"link": "PLtLTkbqOQQmz2k56hitLxbf-iq4r1Muhu"
+	},{
+		"label": "SadFM",
+		"value": "playlist theme",
+		"tag": "sadfm",
+		"source": "youtube",
+		"link": "PLVoWAV3xIrWqZwMvrc1AumPBDMMfvD7fT"
+	},{
+		"label": "Celeste",
+		"value": "ost game",
+		"tag": "celeste 8bit",
+		"source": "youtube",
+		"link": "PLY9u9wC7ApRJk-tG4_pBtH6ubEJ7svnOB"
+	},{
+		"label": "Asmr pour dormir",
+		"value": "emission",
+		"tag": "asmr",
+		"source": "youtube",
+		"link": "PLyaro24KlJD9gLcOkfX3m5DUybbiEfGr3"
+	},{
+		"label": "Katana Zero",
+		"value": "ost game",
+		"tag": "katana_zero synthwave",
+		"source": "youtube",
+		"link": "PLZUD8BXC8V55DoSZZHUn22miwxCpN1RR3"
+	},{
+		"label": "Messe du Dimanche",
+		"value": "emission",
+		"tag": "messe_dimanche",
+		"source": "youtube",
+		"link": "search:kto messe saint germain l'auxerrois"}
+	]
+}

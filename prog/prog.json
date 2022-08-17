@@ -1,0 +1,73 @@
+{"data":[[
+		{"title":"Playlist Musique à Thème","label":"Musiques osu! iconiques","source":"youtube","link":"PLtLTkbqOQQmz2k56hitLxbf-iq4r1Muhu","beginHour":0,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":7,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist OST","label":"FEZ","source":"youtube","link":"76GnOwHorn0&list=PL89C6D0CCE49B641D","beginHour":9,"beginMinute":0,"adBefore":true},
+		{"title":"Messe du dimanche","label":"Messe du Dimanche","source":"youtube","link":"search:kto messe saint germain l'auxerrois","beginHour":12,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist Musique à Thème","label":"Chill 2022","source":"youtube","link":"PLgzTt0k8mXzEpH7-dOCHqRZOsakqXmzmG","beginHour":12,"beginMinute":30,"adBefore":true},
+		{"title":"Playlist Artist","label":"Central Cee","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO3lYf2U?si=56fc00ef51534e9c","beginHour":16,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Musique à Thème","label":"InternetWave","source":"spotify","link":"https://open.spotify.com/playlist/62hD40jkoMHymMlALmXNJB?si=fb72f683162c464b","beginHour":19,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Artist","label":"Central Cee","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO3lYf2U?si=56fc00ef51534e9c","beginHour":21,"beginMinute":0,"adBefore":true}
+	],[
+		{"title":"Playlist Musique à Thème","label":"ZZCCMXTP","source":"youtube","link":"PLfiMjLyNWxeaQQjpPhk7FlbMZtD56RUyX","beginHour":0,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":7,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist OST","label":"OST FF:XIV Heavensward","source":"youtube","link":"OLAK5uy_kuqCw19hXcJT8Ff0wFsvqkTgZX-yxzViE","beginHour":9,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":12,"beginMinute":0,"adBefore":false},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":13,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Artiste","label":"Danger","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO1mC9MI?si=2aef91f6653947b4","beginHour":14,"beginMinute":0,"adBefore":true},
+		{"title":"Emission : Laurent Gerra","label":"La chronique de Laurent Gerra","source":"youtube","link":"PLcVOgHYnQaGar6_2_roBwCg-U4iO9k7N7","beginHour":16,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist OST","label":"Dune","source":"youtube","link":"PLDisKgcnAC4TVlStzU6FD08dmDBuf6Mq-","beginHour":16,"beginMinute":30,"adBefore":true},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":19,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Genre","label":"Rap Français 2022","source":"spotify","link":"https://open.spotify.com/playlist/4l1CEhc7ZPbaEtiPdCSGbl?si=0d78755969a34fab","beginHour":19,"beginMinute":5,"adBefore":true}
+	],[
+		{"title":"Playlist Musique à Thème","label":"ZZCCMXTP","source":"youtube","link":"PLfiMjLyNWxeaQQjpPhk7FlbMZtD56RUyX","beginHour":0,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":7,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist OST","label":"NieR Automata","source":"youtube","link":"OLAK5uy_l--G5hZu15rmQoiNnHHGCARJ5xJePbWOM","beginHour":9,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":12,"beginMinute":0,"adBefore":false},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":13,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Artiste","label":"Danger","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO1mC9MI?si=2aef91f6653947b4","beginHour":14,"beginMinute":0,"adBefore":true},
+		{"title":"Emission","label":"Asmr pour dormir","source":"youtube","link":"PLyaro24KlJD9gLcOkfX3m5DUybbiEfGr3","beginHour":16,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist OST","label":"Undertale","source":"youtube","link":"OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc","beginHour":16,"beginMinute":30,"adBefore":true},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":19,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Genre","label":"Rap Français 2022","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO1mC9MI?si=2aef91f6653947b4","beginHour":19,"beginMinute":5,"adBefore":true}
+	],[
+		{"title":"Playlist Musique à Thème","label":"SadFM","source":"youtube","link":"PLVoWAV3xIrWqZwMvrc1AumPBDMMfvD7fT","beginHour":0,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":7,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist OST","label":"OST FF:XIV A Realm Reborn","source":"youtube","link":"OLAK5uy_m8sjPWdifVNP7KAR28DeY4la1AnEj_Y1I","beginHour":9,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":12,"beginMinute":0,"adBefore":false},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":13,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Artiste","label":"Igorrr","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO1ncseY?si=533ccb97fbf543cf","beginHour":14,"beginMinute":0,"adBefore":true},
+		{"title":"Emission : Bigard","label":"Le Florilège de Bigard","source":"youtube","link":"PLcOiH8LUT4lkw9Grh5VOWFzM8JH_k4lbd","beginHour":16,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist OST","label":"Earthbound","source":"youtube","link":"PL1kU0pk5M3GCwzveqamX71sW3RmCzuXB5","beginHour":16,"beginMinute":30,"adBefore":true},
+		{"title":"Playlist à Thème : Chill","label":"GRIS","source":"youtube","link":"OLAK5uy_nWEw_XDViVW6OkabOr67WU58-rN760uYE","beginHour":19,"beginMinute":0,"adBefore":true},
+		{"title":"Emission : Hypnose Méditation","label":"Hypnose par Benjamin Lubszynski","source":"youtube","link":"PLonu8YOac5Qp2TiY57HNfLd_hq_pbXQHh","beginHour":22,"beginMinute":0,"adBefore":false}
+	],[
+		{"title":"Playlist Musique à Thème","label":"Musiques osu! iconiques","source":"youtube","link":"PLtLTkbqOQQmz2k56hitLxbf-iq4r1Muhu","beginHour":1,"beginMinute":0,"adBefore":false},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":7,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist OST","label":"Undertale","source":"youtube","link":"OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc","beginHour":9,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":12,"beginMinute":0,"adBefore":false},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":13,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist à Genre","label":"Rap Français 2022","source":"spotify","link":"https://open.spotify.com/playlist/4l1CEhc7ZPbaEtiPdCSGbl?si=0d78755969a34fab","beginHour":14,"beginMinute":0,"adBefore":true},
+		{"title":"Emission : Les Grosses Têtes","label":"Les Grosses Têtes 2020","source":"youtube","link":"PLmXdn3NnBDeo1gPmFdQuNHmWaxp-mIrqH","beginHour":16,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist OST","label":"OST FF:XIV Shadowbringer","source":"youtube","link":"OLAK5uy_k6VLzZ2xBwP1jVU7h1jQ1DWqxYz5k4rrE","beginHour":16,"beginMinute":5,"adBefore":true},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":19,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Artiste","label":"Jul","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO2atMEo?si=d316072285234568","beginHour":19,"beginMinute":5,"adBefore":true},
+		{"title":"Emission : ASMR","label":"Asmr pour dormir","source":"youtube","link":"PLyaro24KlJD9gLcOkfX3m5DUybbiEfGr3","beginHour":23,"beginMinute":0,"adBefore":true}
+	],[
+		{"title":"Playlist Musique à Thème","label":"Musiques osu! iconiques","source":"youtube","link":"PLtLTkbqOQQmz2k56hitLxbf-iq4r1Muhu","beginHour":1,"beginMinute":0,"adBefore":false},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":7,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist OST","label":"Outerwilds (w. Echoes of the Eye)","source":"youtube","link":"PL-f6lhHTNtYnofxTCiNh9Xsq9yHLG_VZ7","beginHour":9,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":12,"beginMinute":0,"adBefore":false},
+		{"title":"Podcast","label":"Laser Disc","source":"youtube","link":"PLAS2c8lAJ7dR8T7ZG-ZFHnLF0fcAxFBi0","beginHour":13,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist à Genre","label":"Disco Music","source":"spotify","link":"https://open.spotify.com/playlist/5YW0YxQ7CQU7KiW0KZoPPD?si=9b2a0e703b8c4abb","beginHour":14,"beginMinute":0,"adBefore":true},
+		{"title":"Emission","label":"Messe du Dimanche","source":"youtube","link":"search:kto messe saint germain l'auxerrois","beginHour":16,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist OST FXIV","label":"OST FF:XIV Shadowbringer","source":"youtube","link":"OLAK5uy_k6VLzZ2xBwP1jVU7h1jQ1DWqxYz5k4rrE","beginHour":16,"beginMinute":5,"adBefore":true},
+		{"title":"Passion Clubbing","label":"Danger","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO1mC9MI?si=2aef91f6653947b4","beginHour":20,"beginMinute":0,"adBefore":true}
+	],[
+		{"title":"Playlist Musique à Thème","label":"InternetWave","source":"spotify","link":"https://open.spotify.com/playlist/62hD40jkoMHymMlALmXNJB?si=fb72f683162c464b","beginHour":2,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":7,"beginMinute":0,"adBefore":false},
+		{"title":"Playlist OST","label":"FEZ","source":"youtube","link":"76GnOwHorn0&list=PL89C6D0CCE49B641D","beginHour":9,"beginMinute":0,"adBefore":true},
+		{"title":"Actualité France Info","label":"France Info","source":"franceinfo","link":"http://icecast.radiofrance.fr/franceinfo-midfi.mp3","beginHour":12,"beginMinute":0,"adBefore":false},
+		{"title":"La Playlist des enfer","label":"10ème cercle des Enfers","source":"youtube","link":"PL_QxFQYnISApnlMzdZ-_BjpZYInc0VMdl","beginHour":14,"beginMinute":0,"adBefore":true},
+		{"title":"Emission","label":"Hypnose par Benjamin Lubszynski","source":"youtube","link":"PLonu8YOac5Qp2TiY57HNfLd_hq_pbXQHh","beginHour":16,"beginMinute":0,"adBefore":true},
+		{"title":"Playlist Musique à Thème : Planète Rap","label":"Vald","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO26xkaI?si=2076f08430d341f5","beginHour":16,"beginMinute":5,"adBefore":true},
+		{"title":"Passion Clubbing","label":"Danger","source":"spotify","link":"https://open.spotify.com/playlist/37i9dQZF1DZ06evO1mC9MI?si=2aef91f6653947b4","beginHour":20,"beginMinute":0,"adBefore":true}]]}
