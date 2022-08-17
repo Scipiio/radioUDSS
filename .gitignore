@@ -1,3 +1,4 @@
 .data/spotify.data
+.data/config.json
 node_modules/
 local_tracks/
