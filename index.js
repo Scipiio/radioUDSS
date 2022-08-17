@@ -40,6 +40,7 @@ function shuffle(array) {
 // 													GLOBALS VARIABLES
 // #############################################################################################################################
 
+var COOL_S = "   ^\n  / \\\n /   \\\n/     \\\n|  |  |\n|  |  |\n\\  \\  /\n \\  \\/\n /\\  \\\n/  \\  \\\n|  |  |\n|  |  |\n\\     /\n \\   /\n  \\ /\n   v   alut"
 var NUMBER_ADS = 5;
 var CURRENT_PROG_ITERATION = -1;
 var CURRENT_PROG = {};
@@ -288,7 +289,8 @@ async function checkProgLoop(){
 
 // When the client is ready, run this code (only once)
 client.once('ready', async () => {
-	console.log('BOT READY');
+	console.log('Radio UDSS started     ||');
+	console.log(COOL_S);
 
 	if (play.is_expired()) {
 		await play.refreshToken() // This will check if access token has expired or not. If yes, then refresh the token.
