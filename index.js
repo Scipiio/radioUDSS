@@ -4,7 +4,12 @@
 // #############################################################################################################################
 
 // Discord.js classes
-const { Client, GatewayIntentBits } = require('discord.js');
+const { ActionRowBuilder,
+		ButtonBuilder, 
+		ButtonStyle, 
+		EmbedBuilder, 
+		Client, 
+		GatewayIntentBits } = require('discord.js');
 const { token } = require('./.data/config.json');
 const cluster = require('cluster');
 
@@ -59,6 +64,7 @@ if(cluster.isMaster) {
 	var CURRENT_TRACK_ITERATION = 0;
 	var CURRENT_TRACK_LIST = [];
 	var CURRENT_TRACK_SOURCE = '';
+	var NOW_PLAYING = '';
 
 	var PROG_JSON = {};
 	const loadProg = new Promise((resolve, reject) => {
@@ -76,7 +82,10 @@ if(cluster.isMaster) {
 
 	// Create a new client instance
 	const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
-	const CHANNEL_ID = '476098208112574464';
+	const CHANNEL_ID_VOICE = '476098208112574464';
+	const CHANNEL_ID_TEXT  = '758698867050676314';
+	var MAIN_MESSAGE = ''
+	var IS_CURRENT_VIEW = true;
 
 	const player = createAudioPlayer({
 		behaviors: {
@@ -147,8 +156,15 @@ if(cluster.isMaster) {
 				break;
 			}
 			case 'youtube':{
-				let res = await ytfps(link);
-				CURRENT_TRACK_LIST = shuffle(res.videos);
+				if(link.startsWith('search:')) {
+					let searched = await play.search(link.split(':')[1], {
+						limit: 1
+					})
+					CURRENT_TRACK_LIST = [searched[0].url];
+				} else {
+					let res = await ytfps(link);
+					CURRENT_TRACK_LIST = shuffle(res.videos);
+				}
 				break;
 			}
 			case 'spotify':{
@@ -180,13 +196,14 @@ if(cluster.isMaster) {
 				case 'local':{
 
 					player.play(createAudioResource('./local_tracks/' + currentTrack));
-					console.log('Now playing: ' + currentTrack);
+					NOW_PLAYING = currentTrack
 
 					break;
 				}
 				case 'pub':{
 
 					player.play(createAudioResource(currentTrack));
+					NOW_PLAYING = 'Séquence Pub';
 
 					break;
 				}
@@ -198,7 +215,8 @@ if(cluster.isMaster) {
 					})
 
 					player.play(resource)
-					console.log('Now playing: ' + currentTrack.title)
+					if(IS_CURRENT_VIEW) updateMessage(currentTrack.title);
+					NOW_PLAYING = currentTrack.title;
 
 					break;
 				}
@@ -210,7 +228,7 @@ if(cluster.isMaster) {
 					}) // This will search the found track on youtube.
 
 					let stream = await play.stream(searched[0].url) // This will create stream from the above search
-					console.log('Now playing: ' + searched[0].title)
+					NOW_PLAYING = searched[0].title;
 
 					let resource = createAudioResource(stream.stream, {
 						inputType: stream.type
@@ -221,12 +239,16 @@ if(cluster.isMaster) {
 				}
 				case 'franceinfo':{
 					player.play(createAudioResource(CURRENT_TRACK_LIST[0]));
+					if(IS_CURRENT_VIEW) updateMessage('Actualité France Info');
 					checkProgLoop();
 					break;
 				}
 				default:
 					throw 'Type on playTrackList not defined!';
 			}
+
+			if(IS_CURRENT_VIEW && CURRENT_TRACK_SOURCE != 'pub') updateMessage(NOW_PLAYING);
+			if(CURRENT_TRACK_SOURCE != 'pub') console.log('Now playing: ' + NOW_PLAYING)
 
 			if(CURRENT_TRACK_ITERATION == CURRENT_TRACK_LIST.length - 1) {
 				if(CURRENT_TRACK_SOURCE == 'pub') {
@@ -297,6 +319,15 @@ if(cluster.isMaster) {
 		},5000)
 	}
 
+	function updateMessage(text){
+		const embed = new EmbedBuilder()
+			.setColor(0xDAF7A6)
+			.setTitle('Radio UDSS, Hit Music Only')
+			.setDescription('Programmation en cours : ' + '\n\n' + text);
+
+		MAIN_MESSAGE.edit({ content: '', ephemeral: false, embeds: [embed], components: MAIN_MESSAGE.components })
+	}
+
 	// When the client is ready, run this code (only once)
 	client.once('ready', async () => {
 		console.log('Radio UDSS started     ||');
@@ -308,12 +339,66 @@ if(cluster.isMaster) {
 
 		await loadProg;
 
-		const channel = client.channels.cache.get(CHANNEL_ID);
+		const channel = client.channels.cache.get(CHANNEL_ID_VOICE);
 		const connection = await connectToChannel(channel);
 
 		connection.subscribe(player);
 
 		checkProg();
+
+		MAIN_MESSAGE = await client.channels.cache.get(CHANNEL_ID_TEXT).messages.fetch('1009781815151697961');
+
+		const row1 = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+					.setCustomId('current')
+					.setLabel('En cours')
+					.setStyle(ButtonStyle.Primary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('6')
+					.setLabel('Samedi')
+					.setStyle(ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('0')
+					.setLabel('Dimanche')
+					.setStyle(ButtonStyle.Secondary),
+			);
+		const row2 = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+					.setCustomId('1')
+					.setLabel('Lundi')
+					.setStyle(ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('2')
+					.setLabel('Mardi')
+					.setStyle(ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('3')
+					.setLabel('Mercredi')
+					.setStyle(ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('4')
+					.setLabel('Jeudi')
+					.setStyle(ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('5')
+					.setLabel('Vendredi')
+					.setStyle(ButtonStyle.Secondary),
+			);
+
+		const embed = new EmbedBuilder()
+			.setColor(0xDAF7A6)
+			.setTitle('Radio UDSS, Hit Music Only')
+			.setDescription('Bienvenue sur la Radio UDSS, la radio 100% DEUSSIENNE !');
+
+		MAIN_MESSAGE.edit({ content: '', ephemeral: false, embeds: [embed], components: [row1,row2] });
 	});
 
 	client.on('interactionCreate', async interaction => {
@@ -323,6 +408,35 @@ if(cluster.isMaster) {
 
 		if (commandName === 'server') {
 			await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+		}
+	});
+
+	client.on('interactionCreate', interaction => {
+		if (!interaction.isButton()) return;
+		if(interaction.customId == 'current'){
+			IS_CURRENT_VIEW = true;
+			const embed = new EmbedBuilder()
+				.setColor(0xDAF7A6)
+				.setTitle('Radio UDSS, Hit Music Only')
+				.setDescription('Programme en cours : ' + CURRENT_PROG.title + ' - ' + CURRENT_PROG.label + '\n\n' + NOW_PLAYING);
+
+			interaction.update({ content: '', ephemeral: false, embeds: [embed], components: interaction.components });
+		} else {
+			IS_CURRENT_VIEW = false;
+			let dayWeek = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi']
+			let text = '';
+			for (var i = 0; i < PROG_JSON[parseInt(interaction.customId,'10')].length; i++) {
+				let prog = PROG_JSON[parseInt(interaction.customId,'10')][i];
+				let minute = prog.beginMinute == '0' ? prog.beginMinute + '0' : prog.beginMinute;
+
+				text += ' ⬤   ' + prog.beginHour + 'h' + minute + ' :\t ' + prog.title + ' - ' + prog.label + '\n';
+			}
+			const embed = new EmbedBuilder()
+				.setColor(0xDAF7A6)
+				.setTitle('Radio UDSS, Hit Music Only')
+				.setDescription('Programme du ' + dayWeek[parseInt(interaction.customId,'10')] + ' : \n\n' + text);
+
+			interaction.update({ content: '', ephemeral: false, embeds: [embed], components: interaction.components });
 		}
 	});
 

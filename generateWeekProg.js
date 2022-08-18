@@ -70,12 +70,14 @@ const generate = new Promise((resolve, reject) => {
 
 				var progObj = {
 					"title": template[dayWeek[day]][i].title,
+					"theme": template[dayWeek[day]][i].theme,
 					"label": label,
 					"source": source,
 					"link": link,
 					"beginHour": template[dayWeek[day]][i].beginHour,
 					"beginMinute": template[dayWeek[day]][i].beginMinute,
-					"adBefore": template[dayWeek[day]][i].adBefore
+					"adBefore": template[dayWeek[day]][i].adBefore,
+					"forced": template[dayWeek[day]][i].forced
 				}
 				arrayProg.push(progObj);
 			}
@@ -84,14 +86,43 @@ const generate = new Promise((resolve, reject) => {
 			weekJSON.data[day] = arrayProg;
 		}
 		//console.log(weekJSON);
-		resolve(JSON.stringify(weekJSON));
+
+		for (var j = 0; j < weekJSON.data.length; j++) {
+			for (var i = 0; i < weekJSON.data[j].length; i++) {
+					
+				if(weekJSON.data[j][i].forced === undefined && weekJSON.data[j][i].theme != "franceinfo"){
+					let loop = 0;
+					let double = weekJSON.data[j][i];
+					while(nbDouble(weekJSON.data,double.link) > 1 && loop < 20){
+						console.log('In loop: ' + double.theme);
+						let resultObjArray = searchObj(playlistsData, double.theme);
+						let rand = Math.floor(Math.random() * resultObjArray.length);
+						let resultObj = resultObjArray[rand];
+
+						double.source = resultObj.source;
+						double.link   = resultObj.link;
+						double.label  = resultObj.label;
+						loop++;
+					}
+				}
+			}
+		}
+
+		resolve(weekJSON);
 	});
 });
 
+function nbDouble(obj, value){
+	let result = 0
+	for (var i = 0; i < obj.length; i++) {
+		result += obj[i].filter(prog => prog.link == value).length;
+	}
+	return result;
+}
 
 generate.then(data => {
 	let date = new Date();
-	fs.appendFile('./prog/prog.json', data, function (err) {
+	fs.appendFile('./prog/prog.json', JSON.stringify(data), function (err) {
 		if (err) throw err;
 		console.log('Saved!');
 	});
