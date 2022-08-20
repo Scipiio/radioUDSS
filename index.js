@@ -124,10 +124,7 @@ if(cluster.isMaster) {
 	}
 
 	async function generateTrackList() {
-		//get prog
-		//check hour
-		//pick playlist
-		//set playlist as listened
+		
 		let link = CURRENT_PROG.link;
 		CURRENT_TRACK_LIST = [];
 		CURRENT_TRACK_ITERATION = 0;
@@ -153,6 +150,10 @@ if(cluster.isMaster) {
 				}
 				CURRENT_TRACK_LIST.push('./local_tracks/pub/BIP.mp3', './local_tracks/pub/JINGLE_PUB.mp3');
 				CURRENT_TRACK_LIST.unshift('./local_tracks/pub/JINGLE_PUB.mp3');
+
+				NOW_PLAYING = 'Séquence pub';
+				if(IS_CURRENT_VIEW) updateMessage();
+
 				break;
 			}
 			case 'youtube':{
@@ -215,7 +216,6 @@ if(cluster.isMaster) {
 					})
 
 					player.play(resource)
-					if(IS_CURRENT_VIEW) updateMessage(currentTrack.title);
 					NOW_PLAYING = currentTrack.title;
 
 					break;
@@ -239,7 +239,7 @@ if(cluster.isMaster) {
 				}
 				case 'franceinfo':{
 					player.play(createAudioResource(CURRENT_TRACK_LIST[0]));
-					if(IS_CURRENT_VIEW) updateMessage('Actualité France Info');
+					NOW_PLAYING = 'Actualité France Info'
 					checkProgLoop();
 					break;
 				}
@@ -247,7 +247,7 @@ if(cluster.isMaster) {
 					throw 'Type on playTrackList not defined!';
 			}
 
-			if(IS_CURRENT_VIEW && CURRENT_TRACK_SOURCE != 'pub') updateMessage(NOW_PLAYING);
+			if(IS_CURRENT_VIEW && CURRENT_TRACK_SOURCE != 'pub') updateMessage();
 			if(CURRENT_TRACK_SOURCE != 'pub') console.log('Now playing: ' + NOW_PLAYING)
 
 			if(CURRENT_TRACK_ITERATION == CURRENT_TRACK_LIST.length - 1) {
@@ -268,7 +268,7 @@ if(cluster.isMaster) {
 	}
 
 	async function checkProg(){
-		let now  = new Date();
+		let now  = new Date(); //'Sat Aug 20 2022 01:34:08 GMT+0200'
 		let hourEvent = new Date();
 
 		let dayProg = PROG_JSON[now.getDay()];
@@ -276,11 +276,19 @@ if(cluster.isMaster) {
 		let i = 0;
 		hourEvent.setHours(dayProg[i].beginHour,dayProg[i].beginMinute,0);
 
-		while (now > hourEvent && dayProg[i] !== undefined){
-			i++;
-	    	hourEvent.setHours(dayProg[i].beginHour,dayProg[i].beginMinute,0);
+		if(now < hourEvent){
+			dayProg = PROG_JSON[now.getDay() - 1];
+			i = dayProg.length - 1;
+		} else {
+			let stop = false;
+			while (now > hourEvent && !stop){
+				i++;
+				if(dayProg[i + 1] === undefined) stop = true;
+				else await hourEvent.setHours(dayProg[i + 1].beginHour,dayProg[i + 1].beginMinute,0); 
+			}
 		}
-		i--
+		
+
 		if(CURRENT_PROG_ITERATION != i){
 			console.log('Changing program - Updating to ' + dayProg[i].title + ' - '  + dayProg[i].label)
 
@@ -319,11 +327,11 @@ if(cluster.isMaster) {
 		},5000)
 	}
 
-	function updateMessage(text){
+	function updateMessage(){
 		const embed = new EmbedBuilder()
 			.setColor(0xDAF7A6)
 			.setTitle('Radio UDSS, Hit Music Only')
-			.setDescription('Programmation en cours : ' + '\n\n' + text);
+			.setDescription('Programme en cours : ' + CURRENT_PROG.title + ' - ' + CURRENT_PROG.label + '\n\n' + NOW_PLAYING);
 
 		MAIN_MESSAGE.edit({ content: '', ephemeral: false, embeds: [embed], components: MAIN_MESSAGE.components })
 	}
@@ -337,6 +345,14 @@ if(cluster.isMaster) {
 			await play.refreshToken() // This will check if access token has expired or not. If yes, then refresh the token.
 		}
 
+		MAIN_MESSAGE = await client.channels.cache.get(CHANNEL_ID_TEXT).messages.fetch('1009781815151697961');
+		const embed = new EmbedBuilder()
+			.setColor(0xDAF7A6)
+			.setTitle('Radio UDSS, Hit Music Only')
+			.setDescription('Bienvenue sur la Radio UDSS, la radio 100% DEUSSIENNE !');
+
+		MAIN_MESSAGE.edit({ content: '', ephemeral: false, embeds: [embed], components: MAIN_MESSAGE.components });
+
 		await loadProg;
 
 		const channel = client.channels.cache.get(CHANNEL_ID_VOICE);
@@ -346,8 +362,7 @@ if(cluster.isMaster) {
 
 		checkProg();
 
-		MAIN_MESSAGE = await client.channels.cache.get(CHANNEL_ID_TEXT).messages.fetch('1009781815151697961');
-
+/*
 		const row1 = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
@@ -392,13 +407,7 @@ if(cluster.isMaster) {
 					.setLabel('Vendredi')
 					.setStyle(ButtonStyle.Secondary),
 			);
-
-		const embed = new EmbedBuilder()
-			.setColor(0xDAF7A6)
-			.setTitle('Radio UDSS, Hit Music Only')
-			.setDescription('Bienvenue sur la Radio UDSS, la radio 100% DEUSSIENNE !');
-
-		MAIN_MESSAGE.edit({ content: '', ephemeral: false, embeds: [embed], components: [row1,row2] });
+*/
 	});
 
 	client.on('interactionCreate', async interaction => {
