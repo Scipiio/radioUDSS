@@ -59,7 +59,7 @@
 			"title": "Playlist Genre",
 			"theme": "playlist genre",
 			"beginHour": 19,
-			"beginMinute": 5,
+			"beginMinute": 30,
 			"adBefore": true
 		}
 	],
@@ -122,7 +122,7 @@
 			"title": "Playlist Genre",
 			"theme": "playlist genre",
 			"beginHour": 19,
-			"beginMinute": 5,
+			"beginMinute": 30,
 			"adBefore": true
 		}
 	],
@@ -241,7 +241,7 @@
 			"title": "Playlist OST",
 			"theme": "ost",
 			"beginHour": 16,
-			"beginMinute": 5,
+			"beginMinute": 30,
 			"adBefore": true
 		},{
 			"title": "Podcast",
@@ -253,7 +253,7 @@
 			"title": "Playlist Artiste",
 			"theme": "playlist artist",
 			"beginHour": 19,
-			"beginMinute": 5,
+			"beginMinute": 30,
 			"adBefore": true
 		},{
 			"title": "Emission : ASMR",
@@ -312,7 +312,7 @@
 			"theme": "ost",
 			"forced": "ffxiv",
 			"beginHour": 16,
-			"beginMinute": 5,
+			"beginMinute": 30,
 			"adBefore": true
 		},{
 			"title": "Passion Clubbing",
@@ -366,7 +366,7 @@
 			"theme": "playlist genre",
 			"forced": "rap",
 			"beginHour": 16,
-			"beginMinute": 5,
+			"beginMinute": 30,
 			"adBefore": true
 		},{
 			"title": "Passion Clubbing",

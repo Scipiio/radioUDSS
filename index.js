@@ -268,18 +268,18 @@ if(cluster.isMaster) {
 	}
 
 	async function checkProg(){
-		let now  = new Date(); //'Sat Aug 20 2022 01:34:08 GMT+0200'
+		let now  = new Date('Mon Aug 22 2022 08:34:08 GMT+0200'); //'Sat Aug 20 2022 01:34:08 GMT+0200'
 		let hourEvent = new Date();
 
 		let dayProg = PROG_JSON[now.getDay()];
 		
 		let i = 0;
-		hourEvent.setHours(dayProg[i].beginHour,dayProg[i].beginMinute,0);
-
+		hourEvent.setHours(dayProg[i].beginHour,dayProg[i].beginMinute,1);
+		
 		if(now < hourEvent){
 			dayProg = PROG_JSON[now.getDay() - 1];
 			i = dayProg.length - 1;
-		} else {
+		} else if (dayProg[i].beginHour != 0 && dayProg[i].beginMinute != 0) {
 			let stop = false;
 			while (now > hourEvent && !stop){
 				i++;
