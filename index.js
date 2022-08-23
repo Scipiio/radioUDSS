@@ -314,20 +314,15 @@ if(cluster.isMaster) {
 
 			let dayProg = PROG_JSON[now.getDay()];
 			
-			let i = 0;
-			hourEvent.setHours(dayProg[i].beginHour,dayProg[i].beginMinute,0);
+			hourEvent.setHours(dayProg[CURRENT_PROG_ITERATION + 1].beginHour,dayProg[CURRENT_PROG_ITERATION + 1].beginMinute,10);
 
-			while (now > hourEvent && dayProg[i] !== undefined){
-				i++;
-		    	hourEvent.setHours(dayProg[i].beginHour,dayProg[i].beginMinute,0);
-			}
-			i--
-			if(CURRENT_PROG_ITERATION != i){
+			if (now < hourEvent){
+				checkProgLoop();
+			} else {
 		    	console.log('Stopping Player')
 				player.stop();
-			} else {
-				checkProgLoop();
 			}
+
 		},5000)
 	}
 
