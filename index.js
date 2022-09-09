@@ -99,13 +99,28 @@ if(cluster.isMaster) {
 	// 													MAIN SCRIPT
 	// #############################################################################################################################
 
-	player.on('stateChange', (oldState, newState) => {
+	player.on('stateChange', async (oldState, newState) => {
 		if (oldState.status === AudioPlayerStatus.Idle && newState.status === AudioPlayerStatus.Playing) {
 			console.log(separator);
 			console.log('/! TRY TO PLAY SOMETHING BUT THE PLAYER ACTIVE');
 		} else if (newState.status === AudioPlayerStatus.Idle) {
-			if(CURRENT_TRACK_SOURCE != 'pub')
-			checkProg()
+
+			if(CURRENT_TRACK_SOURCE == 'END') {
+				const loadNewProg = new Promise((resolve, reject) => {
+					fs.readFile('./prog/prog.json', 'utf8', (err, data) => {
+						if (err) {
+							console.error(err);
+						return;
+						}
+
+						PROG_JSON = JSON.parse(data).data
+						console.log('Programmation Loaded!');
+						resolve(PROG_JSON);
+					});
+				});
+				await loadNewProg;
+			}
+			checkProg();
 		}
 	});
 
@@ -179,7 +194,7 @@ if(cluster.isMaster) {
 				} else if(link.startsWith('video:')) {
 					CURRENT_TRACK_LIST = [{
 						title: CURRENT_PROG.label,
-						url: link.split(':')[1];
+						url: link.split(':')[1]
 					}]
 					console.log(CURRENT_TRACK_LIST)
 				} else {

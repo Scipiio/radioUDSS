@@ -65,7 +65,7 @@
 			"title": "Playlist Musique à Thème",
 			"theme": "playlist theme",
 			"beginHour": 22,
-			"beginMinute": 00,
+			"beginMinute": 0,
 			"adBefore": true
 		}
 	],
@@ -128,7 +128,7 @@
 			"title": "Playlist Artiste",
 			"theme": "playlist artist",
 			"beginHour": 22,
-			"beginMinute": 00,
+			"beginMinute": 0,
 			"adBefore": true
 		}
 	],
@@ -192,7 +192,7 @@
 			"title": "Playlist OST",
 			"theme": "ost",
 			"beginHour": 22,
-			"beginMinute": 00,
+			"beginMinute": 0,
 			"adBefore": true
 		}
 	],
