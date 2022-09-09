@@ -1,10 +1,16 @@
 {
 	"lundi": [
 		{
+			"title": "RESET PROG",
+			"theme": "RESET PROG",
+			"beginHour": 0,
+			"beginMinute": 0,
+			"adBefore": false
+		},{
 			"title": "Playlist Musique à Thème",
 			"theme": "playlist theme",
 			"beginHour": 0,
-			"beginMinute": 0,
+			"beginMinute": 10,
 			"adBefore": true
 		},{
 			"title": "Actualité France Info",
@@ -47,19 +53,19 @@
 			"title": "Playlist OST",
 			"theme": "ost",
 			"beginHour": 16,
-			"beginMinute": 30,
-			"adBefore": true
-		},{
-			"title": "Podcast",
-			"theme": "podcast",
-			"beginHour": 19,
-			"beginMinute": 0,
+			"beginMinute": 40,
 			"adBefore": true
 		},{
 			"title": "Playlist Genre",
 			"theme": "playlist genre",
 			"beginHour": 19,
-			"beginMinute": 30,
+			"beginMinute": 0,
+			"adBefore": true
+		},{
+			"title": "Playlist Musique à Thème",
+			"theme": "playlist theme",
+			"beginHour": 22,
+			"beginMinute": 00,
 			"adBefore": true
 		}
 	],
@@ -69,7 +75,7 @@
 			"theme": "playlist theme",
 			"beginHour": 0,
 			"beginMinute": 0,
-			"adBefore": true
+			"adBefore": false
 		},{
 			"title": "Actualité France Info",
 			"theme": "franceinfo",
@@ -77,8 +83,8 @@
 			"beginMinute": 0,
 			"adBefore": false
 		},{
-			"title": "Playlist OST",
-			"theme": "ost",
+			"title": "Playlist Genre",
+			"theme": "playlist genre",
 			"beginHour": 9,
 			"beginMinute": 0,
 			"adBefore": true
@@ -89,15 +95,9 @@
 			"beginMinute": 0,
 			"adBefore": false
 		},{
-			"title": "Podcast",
-			"theme": "podcast",
+			"title": "Playlist OST",
+			"theme": "ost",
 			"beginHour": 13,
-			"beginMinute": 0,
-			"adBefore": true
-		},{
-			"title": "Playlist Artiste",
-			"theme": "playlist artist",
-			"beginHour": 14,
 			"beginMinute": 0,
 			"adBefore": true
 		},{
@@ -107,8 +107,8 @@
 			"beginMinute": 0,
 			"adBefore": true
 		},{
-			"title": "Playlist OST",
-			"theme": "ost",
+			"title": "Playlist Genre",
+			"theme": "playlist genre",
 			"beginHour": 16,
 			"beginMinute": 30,
 			"adBefore": true
@@ -119,21 +119,26 @@
 			"beginMinute": 0,
 			"adBefore": true
 		},{
-			"title": "Playlist Genre",
-			"theme": "playlist genre",
+			"title": "Playlist Musique à Thème",
+			"theme": "playlist theme",
 			"beginHour": 19,
 			"beginMinute": 30,
+			"adBefore": true
+		},{
+			"title": "Playlist Artiste",
+			"theme": "playlist artist",
+			"beginHour": 22,
+			"beginMinute": 00,
 			"adBefore": true
 		}
 	],
 	"mercredi": [
 		{
 			"title": "Playlist Musique à Thème",
-			"theme": "playlist",
-			"forced": "sadfm",
+			"theme": "playlist theme",
 			"beginHour": 0,
 			"beginMinute": 0,
-			"adBefore": true
+			"adBefore": false
 		},{
 			"title": "Actualité France Info",
 			"theme": "franceinfo",
@@ -141,74 +146,8 @@
 			"beginMinute": 0,
 			"adBefore": false
 		},{
-			"title": "Playlist OST",
-			"theme": "ost",
-			"beginHour": 9,
-			"beginMinute": 0,
-			"adBefore": true
-		},{
-			"title": "Actualité France Info",
-			"theme": "franceinfo",
-			"beginHour": 12,
-			"beginMinute": 0,
-			"adBefore": false
-		},{
-			"title": "Podcast",
-			"theme": "podcast",
-			"beginHour": 13,
-			"beginMinute": 0,
-			"adBefore": true
-		},{
-			"title": "Playlist Artiste",
-			"theme": "playlist artist",
-			"beginHour": 14,
-			"beginMinute": 0,
-			"adBefore": true
-		},{
-			"title": "Emission : Bigard",
-			"theme": "emission",
-			"forced": "bigard",
-			"beginHour": 16,
-			"beginMinute": 0,
-			"adBefore": true
-		},{
-			"title": "Playlist OST",
-			"theme": "ost",
-			"beginHour": 16,
-			"beginMinute": 30,
-			"adBefore": true
-		},{
-			"title": "Playlist à Thème : Chill",
-			"theme": "playlist theme",
-			"forced": "chill",
-			"beginHour": 19,
-			"beginMinute": 0,
-			"adBefore": true
-		},{
-			"title": "Emission : Hypnose Méditation",
-			"theme": "emission",
-			"forced": "hypnose",
-			"beginHour": 22,
-			"beginMinute": 0,
-			"adBefore": false
-		}
-	],
-	"jeudi": [
-		{
 			"title": "Playlist Musique à Thème",
 			"theme": "playlist theme",
-			"beginHour": 1,
-			"beginMinute": 0,
-			"adBefore": false
-		},{
-			"title": "Actualité France Info",
-			"theme": "franceinfo",
-			"beginHour": 7,
-			"beginMinute": 0,
-			"adBefore": false
-		},{
-			"title": "Playlist OST",
-			"theme": "ost",
 			"beginHour": 9,
 			"beginMinute": 0,
 			"adBefore": true
@@ -231,6 +170,64 @@
 			"beginMinute": 0,
 			"adBefore": true
 		},{
+			"title": "Emission : Bigard",
+			"theme": "emission",
+			"forced": "bigard",
+			"beginHour": 16,
+			"beginMinute": 0,
+			"adBefore": true
+		},{
+			"title": "Playlist Musique à Thème",
+			"theme": "playlist theme",
+			"beginHour": 16,
+			"beginMinute": 30,
+			"adBefore": true
+		},{
+			"title": "Playlist Artiste",
+			"theme": "playlist artist",
+			"beginHour": 19,
+			"beginMinute": 0,
+			"adBefore": true
+		},{
+			"title": "Playlist OST",
+			"theme": "ost",
+			"beginHour": 22,
+			"beginMinute": 00,
+			"adBefore": true
+		}
+	],
+	"jeudi": [
+		{
+			"title": "Playlist Musique à Thème",
+			"theme": "playlist theme",
+			"beginHour": 0,
+			"beginMinute": 0,
+			"adBefore": false
+		},{
+			"title": "Actualité France Info",
+			"theme": "franceinfo",
+			"beginHour": 7,
+			"beginMinute": 0,
+			"adBefore": false
+		},{
+			"title": "Playlist Artiste",
+			"theme": "playlist artist",
+			"beginHour": 9,
+			"beginMinute": 0,
+			"adBefore": true
+		},{
+			"title": "Actualité France Info",
+			"theme": "franceinfo",
+			"beginHour": 12,
+			"beginMinute": 0,
+			"adBefore": false
+		},{
+			"title": "Playlist Musique à Thème",
+			"theme": "playlist theme",
+			"beginHour": 13,
+			"beginMinute": 0,
+			"adBefore": true
+		},{
 			"title": "Emission : Les Grosses Têtes",
 			"theme": "emission",
 			"forced": "grosses_tetes",
@@ -238,8 +235,8 @@
 			"beginMinute": 0,
 			"adBefore": true
 		},{
-			"title": "Playlist OST",
-			"theme": "ost",
+			"title": "Playlist Artiste",
+			"theme": "playlist artist",
 			"beginHour": 16,
 			"beginMinute": 30,
 			"adBefore": true
@@ -250,16 +247,16 @@
 			"beginMinute": 0,
 			"adBefore": true
 		},{
-			"title": "Playlist Artiste",
-			"theme": "playlist artist",
+			"title": "Playlist OST",
+			"theme": "ost",
 			"beginHour": 19,
 			"beginMinute": 30,
 			"adBefore": true
 		},{
-			"title": "Emission : ASMR",
-			"theme": "emission",
-			"forced": "asmr",
-			"beginHour": 23,
+			"title": "Playlist à Genre",
+			"theme": "playlist genre",
+			"forced": "ambient",
+			"beginHour": 22,
 			"beginMinute": 0,
 			"adBefore": true
 		}
@@ -278,8 +275,8 @@
 			"beginMinute": 0,
 			"adBefore": false
 		},{
-			"title": "Playlist OST",
-			"theme": "ost",
+			"title": "Playlist à Genre",
+			"theme": "playlist genre",
 			"beginHour": 9,
 			"beginMinute": 0,
 			"adBefore": true
@@ -296,8 +293,8 @@
 			"beginMinute": 0,
 			"adBefore": true
 		},{
-			"title": "Playlist à Genre",
-			"theme": "playlist genre",
+			"title": "Playlist Artiste",
+			"theme": "playlist artist",
 			"beginHour": 14,
 			"beginMinute": 0,
 			"adBefore": true
@@ -317,7 +314,7 @@
 		},{
 			"title": "Passion Clubbing",
 			"theme": "playlist theme",
-			"forced": "club",
+			"forced": "club scipio",
 			"beginHour": 20,
 			"beginMinute": 0,
 			"adBefore": true
@@ -337,8 +334,8 @@
 			"beginMinute": 0,
 			"adBefore": false
 		},{
-			"title": "Playlist OST",
-			"theme": "ost",
+			"title": "Playlist à Genre",
+			"theme": "playlist genre",
 			"beginHour": 9,
 			"beginMinute": 0,
 			"adBefore": true
@@ -352,18 +349,18 @@
 			"title": "La Playlist des enfer",
 			"theme": "playlist theme",
 			"forced": "playlist des enfer",
-			"beginHour": 14,
+			"beginHour": 13,
 			"beginMinute": 0,
 			"adBefore": true
 		},{
 			"title": "Emission",
 			"theme": "emission",
-			"beginHour": 16,
+			"beginHour": 17,
 			"beginMinute": 0,
 			"adBefore": true
 		},{
 			"title": "Playlist Musique à Thème : Planète Rap",
-			"theme": "playlist genre",
+			"theme": "playlist theme",
 			"forced": "rap",
 			"beginHour": 16,
 			"beginMinute": 30,
@@ -391,11 +388,18 @@
 			"beginMinute": 0,
 			"adBefore": false
 		},{
-			"title": "Playlist OST",
-			"theme": "ost game",
+			"title": "Podcast",
+			"theme": "podcast",
+			"forced": "quoideneuf",
 			"beginHour": 9,
 			"beginMinute": 0,
 			"adBefore": true
+		},{
+			"title": "Playlist Artist",
+			"theme": "playlist artist",
+			"beginHour": 10,
+			"beginMinute": 30,
+			"adBefore": false
 		},{
 			"title": "Messe du dimanche",
 			"theme": "emission",
@@ -416,9 +420,9 @@
 			"beginMinute": 0,
 			"adBefore": true
 		},{
-			"title": "Playlist Musique à Thème",
-			"theme": "playlist theme",
-			"beginHour": 19,
+			"title": "Playlist à Genre",
+			"theme": "playlist genre",
+			"beginHour": 18,
 			"beginMinute": 0,
 			"adBefore": true
 		},{

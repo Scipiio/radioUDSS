@@ -11,7 +11,6 @@ const { ActionRowBuilder,
 		Client, 
 		GatewayIntentBits } = require('discord.js');
 const { token } = require('./.data/config.json');
-const cluster = require('cluster');
 
 // Streaming classes
 const {
@@ -26,12 +25,14 @@ const {
 } = require('@discordjs/voice');
 const play = require('play-dl')
 const ytfps = require('ytfps');
+const generateWeekProg = require("./generateWeekProg.js");
 
 // Utils classes
 const fs = require('fs');
 const path = require('path');
+const cluster = require('cluster');
 
-// FisherYates method
+// FisherYates method shuffle
 function shuffle(array) {
 	let i = array.length;
 	while (i--) {
@@ -56,7 +57,8 @@ if(cluster.isMaster) {
 	// 													GLOBALS VARIABLES
 	// #############################################################################################################################
 
-	var COOL_S = "   ^\n  / \\\n /   \\\n/     \\\n|  |  |\n|  |  |\n\\  \\  /\n \\  \\/\n /\\  \\\n/  \\  \\\n|  |  |\n|  |  |\n\\     /\n \\   /\n  \\ /\n   v   alut"
+	const COOL_S = "   ^\n  / \\\n /   \\\n/     \\\n|  |  |\n|  |  |\n\\  \\  /\n \\  \\/\n /\\  \\\n/  \\  \\\n|  |  |\n|  |  |\n\\     /\n \\   /\n  \\ /\n   v   alut"
+	const separator = "\n------------------------------------\n"
 	var NUMBER_ADS = 5;
 	var CURRENT_PROG_ITERATION = -1;
 	var CURRENT_PROG = {};
@@ -99,9 +101,10 @@ if(cluster.isMaster) {
 
 	player.on('stateChange', (oldState, newState) => {
 		if (oldState.status === AudioPlayerStatus.Idle && newState.status === AudioPlayerStatus.Playing) {
-			console.log('Playing audio output on audio player');
+			console.log(separator);
+			console.log('/! TRY TO PLAY SOMETHING BUT THE PLAYER ACTIVE');
 		} else if (newState.status === AudioPlayerStatus.Idle) {
-			if(CURRENT_TRACK_SOURCE != 'pub') console.log('Player stopped. Loading next ressource.');
+			if(CURRENT_TRACK_SOURCE != 'pub')
 			checkProg()
 		}
 	});
@@ -130,6 +133,14 @@ if(cluster.isMaster) {
 		CURRENT_TRACK_ITERATION = 0;
 
 		switch (CURRENT_TRACK_SOURCE) {
+			case 'END':{
+				fs.unlink('./prog/prog.json', async () => {
+					await generateWeekProg.run();
+					await loadProg;
+				});
+				CURRENT_TRACK_LIST = ['https://www.youtube.com/watch?v=cI6ygcSoGzg'];
+				break;
+			}
 			case 'local':{
 				CURRENT_TRACK_LIST = await fs.readdirSync(link);
 				CURRENT_TRACK_LIST = CURRENT_TRACK_LIST.filter(file => file.endsWith('.mp3'));
@@ -138,6 +149,7 @@ if(cluster.isMaster) {
 				break;
 			}
 			case 'pub':{
+				console.log(separator);
 				console.log('Beginning ad sequence:');
 
 				let pub_list = await fs.readdirSync('./local_tracks/pub/pub_list');
@@ -151,6 +163,8 @@ if(cluster.isMaster) {
 				CURRENT_TRACK_LIST.push('./local_tracks/pub/BIP.mp3', './local_tracks/pub/JINGLE_PUB.mp3');
 				CURRENT_TRACK_LIST.unshift('./local_tracks/pub/JINGLE_PUB.mp3');
 
+				if(CURRENT_PROG.theme == 'emission' || CURRENT_PROG.theme == 'podcast') {console.log('sponsor');}
+
 				NOW_PLAYING = 'Séquence pub';
 				if(IS_CURRENT_VIEW) updateMessage();
 
@@ -161,7 +175,13 @@ if(cluster.isMaster) {
 					let searched = await play.search(link.split(':')[1], {
 						limit: 1
 					})
-					CURRENT_TRACK_LIST = [searched[0].url];
+					CURRENT_TRACK_LIST = [searched[0]];
+				} else if(link.startsWith('video:')) {
+					CURRENT_TRACK_LIST = [{
+						title: CURRENT_PROG.label,
+						url: link.split(':')[1];
+					}]
+					console.log(CURRENT_TRACK_LIST)
 				} else {
 					let res = await ytfps(link);
 					CURRENT_TRACK_LIST = shuffle(res.videos);
@@ -194,6 +214,18 @@ if(cluster.isMaster) {
 			let currentTrack = CURRENT_TRACK_LIST[CURRENT_TRACK_ITERATION];
 
 			switch (CURRENT_TRACK_SOURCE) {
+				case 'END':{
+
+					let stream = await play.stream(currentTrack)
+					let resource = createAudioResource(stream.stream, {
+						inputType: stream.type
+					})
+
+					player.play(resource)
+					NOW_PLAYING = 'Génération de la nouvelle programmation, merci de patienter';
+
+					break;
+				}
 				case 'local':{
 
 					player.play(createAudioResource('./local_tracks/' + currentTrack));
@@ -210,19 +242,19 @@ if(cluster.isMaster) {
 				}
 				case 'youtube':{
 
-					let stream = await play.stream(currentTrack.url)
+					let stream = await play.stream(currentTrack.url);
 					let resource = createAudioResource(stream.stream, {
 						inputType: stream.type
 					})
 
-					player.play(resource)
+					player.play(resource);
 					NOW_PLAYING = currentTrack.title;
 
 					break;
 				}
 				case 'spotify':{
 
-					console.log('Searching: ' + currentTrack.artists[0].name + ' ' + currentTrack.name)
+					console.log('Searching: ' + currentTrack.artists[0].name + ' ' + currentTrack.name);
 					let searched = await play.search(currentTrack.artists[0].name + ' ' + currentTrack.name, {
 						limit: 1
 					}) // This will search the found track on youtube.
@@ -233,7 +265,7 @@ if(cluster.isMaster) {
 					let resource = createAudioResource(stream.stream, {
 						inputType: stream.type
 					})
-					player.play(resource)
+					player.play(resource);
 
 					break;
 				}
@@ -253,6 +285,7 @@ if(cluster.isMaster) {
 			if(CURRENT_TRACK_ITERATION == CURRENT_TRACK_LIST.length - 1) {
 				if(CURRENT_TRACK_SOURCE == 'pub') {
 					console.log('Ending ad sequence');
+					console.log(separator);
 					CURRENT_TRACK_SOURCE = CURRENT_PROG.source;
 					await generateTrackList();
 				}
@@ -294,6 +327,7 @@ if(cluster.isMaster) {
 		
 
 		if(CURRENT_PROG_ITERATION != i){
+			console.log(separator);
 			console.log('Changing program - Updating to ' + dayProg[i].title + ' - '  + dayProg[i].label)
 
 			if(dayProg[i].adBefore) {CURRENT_TRACK_SOURCE = 'pub';}
@@ -321,6 +355,9 @@ if(cluster.isMaster) {
 			} else {
 		    	console.log('Stopping Player')
 				player.stop();
+				setTimeout(() => {
+					if(player.paused) checkProg();
+				},5000)
 			}
 
 		},5000)
@@ -332,7 +369,58 @@ if(cluster.isMaster) {
 			.setTitle('Radio UDSS, Hit Music Only')
 			.setDescription('Programme en cours : ' + CURRENT_PROG.title + ' - ' + CURRENT_PROG.label + '\n\n' + NOW_PLAYING);
 
-		MAIN_MESSAGE.edit({ content: '', ephemeral: false, embeds: [embed], components: MAIN_MESSAGE.components })
+		const comp = getMessageButton('current');
+
+		MAIN_MESSAGE.edit({ content: '', ephemeral: false, embeds: [embed], components: comp })
+	}
+
+	function getMessageButton(id){
+		const row1 = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+					.setCustomId('current')
+					.setLabel('En cours')
+					.setStyle(id == 'current' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('6')
+					.setLabel('Samedi')
+					.setStyle(id == '6' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('0')
+					.setLabel('Dimanche')
+					.setStyle(id == '0' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			);
+			
+		const row2 = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+					.setCustomId('1')
+					.setLabel('Lundi')
+					.setStyle(id == '1' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('2')
+					.setLabel('Mardi')
+					.setStyle(id == '2' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('3')
+					.setLabel('Mercredi')
+					.setStyle(id == '3' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('4')
+					.setLabel('Jeudi')
+					.setStyle(id == '4' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			).addComponents(
+				new ButtonBuilder()
+					.setCustomId('5')
+					.setLabel('Vendredi')
+					.setStyle(id == '5' ? ButtonStyle.Primary : ButtonStyle.Secondary),
+			);
+			return [row1,row2];
 	}
 
 	// When the client is ready, run this code (only once)
@@ -360,53 +448,6 @@ if(cluster.isMaster) {
 		connection.subscribe(player);
 
 		checkProg();
-
-/*
-		const row1 = new ActionRowBuilder()
-			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('current')
-					.setLabel('En cours')
-					.setStyle(ButtonStyle.Primary),
-			).addComponents(
-				new ButtonBuilder()
-					.setCustomId('6')
-					.setLabel('Samedi')
-					.setStyle(ButtonStyle.Secondary),
-			).addComponents(
-				new ButtonBuilder()
-					.setCustomId('0')
-					.setLabel('Dimanche')
-					.setStyle(ButtonStyle.Secondary),
-			);
-		const row2 = new ActionRowBuilder()
-			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('1')
-					.setLabel('Lundi')
-					.setStyle(ButtonStyle.Secondary),
-			).addComponents(
-				new ButtonBuilder()
-					.setCustomId('2')
-					.setLabel('Mardi')
-					.setStyle(ButtonStyle.Secondary),
-			).addComponents(
-				new ButtonBuilder()
-					.setCustomId('3')
-					.setLabel('Mercredi')
-					.setStyle(ButtonStyle.Secondary),
-			).addComponents(
-				new ButtonBuilder()
-					.setCustomId('4')
-					.setLabel('Jeudi')
-					.setStyle(ButtonStyle.Secondary),
-			).addComponents(
-				new ButtonBuilder()
-					.setCustomId('5')
-					.setLabel('Vendredi')
-					.setStyle(ButtonStyle.Secondary),
-			);
-*/
 	});
 
 	client.on('interactionCreate', async interaction => {
@@ -414,13 +455,21 @@ if(cluster.isMaster) {
 
 		const { commandName } = interaction;
 
-		if (commandName === 'server') {
-			await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+		if (commandName === 'restart') {
+			if(interaction.member.user.id === '160755858349883392' || interaction.member.user.id === '145122601105227777') {
+				await interaction.reply(`Suicide restart`);
+				suicide.reset();
+			} else {
+				await interaction.reply(`Tu n'as pas les droits pour redémarrer la radio`);
+			}
 		}
 	});
 
 	client.on('interactionCreate', interaction => {
 		if (!interaction.isButton()) return;
+
+		const comp = getMessageButton(interaction.customId);
+		
 		if(interaction.customId == 'current'){
 			IS_CURRENT_VIEW = true;
 			const embed = new EmbedBuilder()
@@ -428,7 +477,7 @@ if(cluster.isMaster) {
 				.setTitle('Radio UDSS, Hit Music Only')
 				.setDescription('Programme en cours : ' + CURRENT_PROG.title + ' - ' + CURRENT_PROG.label + '\n\n' + NOW_PLAYING);
 
-			interaction.update({ content: '', ephemeral: false, embeds: [embed], components: interaction.components });
+			interaction.update({ content: '', ephemeral: false, embeds: [embed], components: comp });
 		} else {
 			IS_CURRENT_VIEW = false;
 			let dayWeek = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi']
@@ -437,14 +486,14 @@ if(cluster.isMaster) {
 				let prog = PROG_JSON[parseInt(interaction.customId,'10')][i];
 				let minute = prog.beginMinute == '0' ? prog.beginMinute + '0' : prog.beginMinute;
 
-				text += ' ⬤   ' + prog.beginHour + 'h' + minute + ' :\t ' + prog.title + ' - ' + prog.label + '\n';
+				text += ' ●   ' + prog.beginHour + 'h' + minute + ' :　' + prog.title + ' - ' + prog.label + '\n';
 			}
 			const embed = new EmbedBuilder()
 				.setColor(0xDAF7A6)
 				.setTitle('Radio UDSS, Hit Music Only')
 				.setDescription('Programme du ' + dayWeek[parseInt(interaction.customId,'10')] + ' : \n\n' + text);
 
-			interaction.update({ content: '', ephemeral: false, embeds: [embed], components: interaction.components });
+			interaction.update({ content: '', ephemeral: false, embeds: [embed], components: comp });
 		}
 	});
 
