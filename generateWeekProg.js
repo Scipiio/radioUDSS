@@ -7,7 +7,7 @@ var dayWeek = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'
 var weekJSON = {"data":['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi']}
 var playlistsData = {}
 
-fs.readFile('./prog/playlistsData.JSON', 'utf8', (err, data) => {
+fs.readFile('./prog/playlistsData.json', 'utf8', (err, data) => {
 	if (err) {
 		console.error(err);
 	return;
@@ -41,7 +41,7 @@ function nbDouble(obj, value){
 
 var run = async function run(){
 	const generate = new Promise((resolve, reject) => {
-		fs.readFile('./prog/template.JSON', 'utf8', (err, data) => {
+		fs.readFile('./prog/template.json', 'utf8', (err, data) => {
 			if (err) {
 				console.error(err);
 			return;
@@ -130,7 +130,7 @@ var run = async function run(){
 
 	generate.then(data => {
 		let date = new Date();
-			fs.appendFile('./prog/prog.JSON', JSON.stringify(data), function (err) {
+			fs.appendFile('./prog/prog.json', JSON.stringify(data), function (err) {
 				if (err) throw err;
 				console.log('Week Programmation Successfully Generated!');
 				return true;

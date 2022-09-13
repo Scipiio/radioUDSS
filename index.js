@@ -10,7 +10,7 @@ const { ActionRowBuilder,
 		EmbedBuilder, 
 		Client, 
 		GatewayIntentBits } = require('discord.js');
-const { token } = require('./.data/config.JSON');
+const { token } = require('./.data/config.json');
 
 // Streaming classes
 const {
@@ -70,7 +70,7 @@ if(cluster.isMaster) {
 
 	var PROG_JSON = {};
 	const loadProg = new Promise((resolve, reject) => {
-		fs.readFile('./prog/prog.JSON', 'utf8', (err, data) => {
+		fs.readFile('./prog/prog.json', 'utf8', (err, data) => {
 			if (err) {
 				console.error(err);
 			return;
@@ -107,7 +107,7 @@ if(cluster.isMaster) {
 
 			if(CURRENT_TRACK_SOURCE == 'END') {
 				const loadNewProg = new Promise((resolve, reject) => {
-					fs.readFile('./prog/prog.JSON', 'utf8', (err, data) => {
+					fs.readFile('./prog/prog.json', 'utf8', (err, data) => {
 						if (err) {
 							console.error(err);
 						return;
@@ -149,7 +149,7 @@ if(cluster.isMaster) {
 
 		switch (CURRENT_TRACK_SOURCE) {
 			case 'END':{
-				fs.unlink('./prog/prog.JSON', async () => {
+				fs.unlink('./prog/prog.json', async () => {
 					await generateWeekProg.run();
 					await loadProg;
 				});
