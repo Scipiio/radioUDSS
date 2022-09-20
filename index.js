@@ -471,12 +471,8 @@ if(cluster.isMaster) {
 		const { commandName } = interaction;
 
 		if (commandName === 'restart') {
-			if(interaction.member.user.id === '160755858349883392' || interaction.member.user.id === '145122601105227777') {
-				await interaction.reply(`Suicide restart`);
-				suicide.reset();
-			} else {
-				await interaction.reply(`Tu n'as pas les droits pour redémarrer la radio`);
-			}
+			await interaction.reply(`Suicide restart`);
+			suicide.reset();
 		}
 	});
 
