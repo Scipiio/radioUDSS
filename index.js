@@ -59,7 +59,7 @@ if(cluster.isMaster) {
 
 	const COOL_S = "   ^\n  / \\\n /   \\\n/     \\\n|  |  |\n|  |  |\n\\  \\  /\n \\  \\/\n /\\  \\\n/  \\  \\\n|  |  |\n|  |  |\n\\     /\n \\   /\n  \\ /\n   v   alut"
 	const separator = "\n------------------------------------\n"
-	var NUMBER_ADS = 5;
+	var NUMBER_ADS = 4;
 	var CURRENT_PROG_ITERATION = -1;
 	var CURRENT_PROG = {};
 
@@ -102,7 +102,7 @@ if(cluster.isMaster) {
 	player.on('stateChange', async (oldState, newState) => {
 		if (oldState.status === AudioPlayerStatus.Idle && newState.status === AudioPlayerStatus.Playing) {
 			console.log(separator);
-			console.log('/! TRY TO PLAY SOMETHING BUT THE PLAYER ACTIVE');
+			console.log('/! TRY TO PLAY SOMETHING WHILE PLAYER ACTIVE');
 		} else if (newState.status === AudioPlayerStatus.Idle) {
 
 			if(CURRENT_TRACK_SOURCE == 'END') {
@@ -142,86 +142,89 @@ if(cluster.isMaster) {
 	}
 
 	async function generateTrackList() {
-		
-		let link = CURRENT_PROG.link;
-		CURRENT_TRACK_LIST = [];
-		CURRENT_TRACK_ITERATION = 0;
+		return new Promise(async (resolve) => {
 
-		switch (CURRENT_TRACK_SOURCE) {
-			case 'END':{
-				fs.unlink('./prog/prog.json', async () => {
-					await generateWeekProg.run();
-					await loadProg;
-				});
-				CURRENT_TRACK_LIST = ['https://www.youtube.com/watch?v=cI6ygcSoGzg'];
-				break;
-			}
-			case 'local':{
-				CURRENT_TRACK_LIST = await fs.readdirSync(link);
-				CURRENT_TRACK_LIST = CURRENT_TRACK_LIST.filter(file => file.endsWith('.mp3'));
-				CURRENT_TRACK_LIST = shuffle(CURRENT_TRACK_LIST);
-				console.log(CURRENT_TRACK_LIST)
-				break;
-			}
-			case 'pub':{
-				console.log(separator);
-				console.log('Beginning ad sequence:');
+			let link = CURRENT_PROG.link;
+			CURRENT_TRACK_LIST = [];
+			CURRENT_TRACK_ITERATION = 0;
 
-				let pub_list = await fs.readdirSync('./local_tracks/pub/pub_list');
-				pub_list = pub_list.filter(file => file.endsWith('.mp3'));
-
-				for (var i = 0; i < NUMBER_ADS; i++) {
-					let rand = Math.floor(Math.random() * pub_list.length);
-					console.log(' - ' + pub_list[rand].slice(0, -4))
-					CURRENT_TRACK_LIST.push('./local_tracks/pub/BIP.mp3', './local_tracks/pub/pub_list/' + pub_list[rand]);
+			switch (CURRENT_TRACK_SOURCE) {
+				case 'END':{
+					fs.unlink('./prog/prog.json', async () => {
+						await generateWeekProg.run();
+						await loadProg;
+					});
+					CURRENT_TRACK_LIST = ['https://www.youtube.com/watch?v=cI6ygcSoGzg'];
+					break;
 				}
-				CURRENT_TRACK_LIST.push('./local_tracks/pub/BIP.mp3', './local_tracks/pub/JINGLE_PUB.mp3');
-				CURRENT_TRACK_LIST.unshift('./local_tracks/pub/JINGLE_PUB.mp3');
-
-				if(CURRENT_PROG.theme == 'emission' || CURRENT_PROG.theme == 'podcast') {console.log('sponsor');}
-
-				NOW_PLAYING = 'Séquence pub';
-				if(IS_CURRENT_VIEW) updateMessage();
-
-				break;
-			}
-			case 'youtube':{
-				if(link.startsWith('search:')) {
-					let searched = await play.search(link.split(':')[1], {
-						limit: 1
-					})
-					CURRENT_TRACK_LIST = [searched[0]];
-				} else if(link.startsWith('video:')) {
-					CURRENT_TRACK_LIST = [{
-						title: CURRENT_PROG.label,
-						url: link.split(':')[1]
-					}]
+				case 'local':{
+					CURRENT_TRACK_LIST = await fs.readdirSync(link);
+					CURRENT_TRACK_LIST = CURRENT_TRACK_LIST.filter(file => file.endsWith('.mp3'));
+					CURRENT_TRACK_LIST = shuffle(CURRENT_TRACK_LIST);
 					console.log(CURRENT_TRACK_LIST)
-				} else {
-					let res = await ytfps(link);
-					CURRENT_TRACK_LIST = shuffle(res.videos);
+					break;
 				}
-				break;
-			}
-			case 'spotify':{
-				if (play.is_expired()) {
-		            await play.refreshToken() // This will check if access token has expired or not. If yes, then refresh the token.
-		        }
-				let Playlist = await play.spotify(link)
-				await Playlist.fetch()
-				for(let i = 1; i <= Playlist.total_pages; i++){
-					CURRENT_TRACK_LIST.push(Playlist.page(i))
+				case 'pub':{
+					console.log(separator);
+					console.log('Beginning ad sequence:');
+
+					let pub_list = await fs.readdirSync('./local_tracks/pub/pub_list');
+					pub_list = pub_list.filter(file => file.endsWith('.mp3'));
+
+					for (var i = 0; i < NUMBER_ADS; i++) {
+						let rand = Math.floor(Math.random() * pub_list.length);
+						console.log(' - ' + pub_list[rand].slice(0, -4))
+						CURRENT_TRACK_LIST.push('./local_tracks/pub/BIP.mp3', './local_tracks/pub/pub_list/' + pub_list[rand]);
+					}
+					CURRENT_TRACK_LIST.push('./local_tracks/pub/BIP.mp3', './local_tracks/pub/JINGLE_PUB.mp3');
+					CURRENT_TRACK_LIST.unshift('./local_tracks/pub/JINGLE_PUB.mp3');
+
+					if(CURRENT_PROG.theme == 'emission' || CURRENT_PROG.theme == 'podcast') {console.log('sponsor');}
+
+					NOW_PLAYING = 'Séquence pub';
+					if(IS_CURRENT_VIEW) updateMessage();
+
+					break;
 				}
-				CURRENT_TRACK_LIST = shuffle(CURRENT_TRACK_LIST[0]);
-				break;
+				case 'youtube':{
+					if(link.startsWith('search:')) {
+						let searched = await play.search(link.split(':')[1], {
+							limit: 1
+						})
+						CURRENT_TRACK_LIST = [searched[0]];
+					} else if(link.startsWith('video:')) {
+						CURRENT_TRACK_LIST = [{
+							title: CURRENT_PROG.label,
+							url: link.split(':')[1]
+						}]
+						console.log(CURRENT_TRACK_LIST)
+					} else {
+						let res = await ytfps(link);
+						CURRENT_TRACK_LIST = shuffle(res.videos);
+					}
+					break;
+				}
+				case 'spotify':{
+					if (play.is_expired()) {
+			            await play.refreshToken() // This will check if access token has expired or not. If yes, then refresh the token.
+			        }
+					let Playlist = await play.spotify(link)
+					await Playlist.fetch()
+					for(let i = 1; i <= Playlist.total_pages; i++){
+						CURRENT_TRACK_LIST.push(Playlist.page(i))
+					}
+					CURRENT_TRACK_LIST = shuffle(CURRENT_TRACK_LIST[0]);
+					break;
+				}
+				case 'franceinfo':{
+					CURRENT_TRACK_LIST = ['http://icecast.radiofrance.fr/franceinfo-midfi.mp3'];
+					break;
+				}
+				default:
+					throw 'Type on generateTrackList not defined!';
 			}
-			case 'franceinfo':{
-				CURRENT_TRACK_LIST = ['http://icecast.radiofrance.fr/franceinfo-midfi.mp3'];
-				break;
-			}
-			default:
-				throw 'Type on generateTrackList not defined!';
-		}
+			resolve(true);
+		});
 	}
 
 	async function playTrackList() {
@@ -237,7 +240,7 @@ if(cluster.isMaster) {
 					})
 
 					player.play(resource)
-					NOW_PLAYING = 'Génération de la nouvelle programmation, merci de patienter';
+					NOW_PLAYING = 'Génération de la nouvelle programmation, merci de patienter.';
 
 					break;
 				}
@@ -304,6 +307,9 @@ if(cluster.isMaster) {
 					CURRENT_TRACK_SOURCE = CURRENT_PROG.source;
 					await generateTrackList();
 				}
+				if (play.is_expired()) {
+					await play.refreshToken() // This will check if access token has expired or not. If yes, then refresh the token.
+				}
 				CURRENT_TRACK_ITERATION = 0;
 			} else {
 				CURRENT_TRACK_ITERATION++;
@@ -311,7 +317,12 @@ if(cluster.isMaster) {
 		} catch (e) {
 			console.log('/! Unable to play track');
 			console.log(e);
-			CURRENT_TRACK_ITERATION++;
+			if(CURRENT_TRACK_ITERATION == CURRENT_TRACK_LIST.length - 1) {
+				CURRENT_TRACK_ITERATION = 0;
+			} else {
+				CURRENT_TRACK_ITERATION++;
+			}
+            playTrackList();
 		}
 	}
 
@@ -357,24 +368,21 @@ if(cluster.isMaster) {
 
 	async function checkProgLoop(){
 
-		setTimeout(() => {
-			let now  = new Date();
-			let hourEvent = new Date();
-
-			let dayProg = PROG_JSON[now.getDay()];
-			
-			hourEvent.setHours(dayProg[CURRENT_PROG_ITERATION + 1].beginHour,dayProg[CURRENT_PROG_ITERATION + 1].beginMinute,10);
-
+		let now = new Date();
+		let dayProg = PROG_JSON[now.getDay()];
+        
+		let hourEvent = new Date();
+			hourEvent.setHours(dayProg[CURRENT_PROG_ITERATION + 1].beginHour,dayProg[CURRENT_PROG_ITERATION + 1].beginMinute,5);
+        
+		setTimeout(async () => {
+			now = new Date();
 			if (now < hourEvent){
 				checkProgLoop();
 			} else {
 		    	console.log('Stopping Player')
 				player.stop();
-				setTimeout(() => {
-					if(player.paused) checkProg();
-				},5000)
+				checkProg();
 			}
-
 		},5000)
 	}
 
