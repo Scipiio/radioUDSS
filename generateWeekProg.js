@@ -104,11 +104,11 @@ var run = async function run(){
 
 			for (var j = 0; j < weekJSON.data.length; j++) {
 				for (var i = 0; i < weekJSON.data[j].length; i++) {
-						
+				
 					if(weekJSON.data[j][i].forced === undefined && weekJSON.data[j][i].theme != "franceinfo"){
 						let loop = 0;
 						let double = weekJSON.data[j][i];
-						while(nbDouble(weekJSON.data,double.link) > 1 && loop < 20){
+							while(nbDouble(weekJSON.data,double.link) > 1 && loop < 20){
 							console.log('In loop: ' + double.theme);
 							let resultObjArray = searchObj(playlistsData, double.theme);
 							let rand = Math.floor(Math.random() * resultObjArray.length);
